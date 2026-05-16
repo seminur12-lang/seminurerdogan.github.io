@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Heavy Rain Üzerine — S.N.E.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f2ea;
+      --text: #1a1208;
+      --muted: #8a7a62;
+      --amber: #c8922a;
+      --amber-dim: #a07520;
+      --rule: #e0d5c0;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-size: 1.175rem;
+      line-height: 1.82;
+      min-height: 100vh;
+    }
+
+    /* ── Top nav ── */
+    .topnav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.1rem 2.5rem;
+      background: rgba(247, 242, 234, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .logo {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      color: var(--amber);
+      text-decoration: none;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .back {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .back:hover { color: var(--amber); }
+
+    .lang-toggle {
+      display: flex;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      border: 1px solid var(--rule);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .lang-btn {
+      padding: 0.3rem 0.65rem;
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: background 0.15s, color 0.15s;
+    }
+    .lang-btn.active { background: var(--amber); color: #fff; }
+    .lang-btn:not(.active):hover { color: var(--text); }
+
+    /* ── Hero ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .hero-left {
+      display: flex;
+      align-items: flex-end;
+      padding: 8rem 3rem 5rem 3rem;
+    }
+
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-right img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    .hero-right::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, var(--bg) 0%, transparent 30%),
+                  linear-gradient(to top, var(--bg) 0%, transparent 20%);
+    }
+
+    .hero-right.no-image {
+      background: linear-gradient(135deg, #e8dfc8 0%, #d4c9b0 100%);
+    }
+
+    .hero-content { width: 100%; }
+
+    .meta {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--amber-dim);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .meta-sep { color: var(--rule); }
+
+    h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(2.4rem, 5vw, 3.4rem);
+      font-weight: 600;
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+
+    .subtitle {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ── Article ── */
+    .article {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 4rem 2rem 3rem;
+    }
+
+    hr { border: none; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
+
+    p { margin-bottom: 1.6rem; }
+    p:last-child { margin-bottom: 0; }
+
+    /* ── Footer ── */
+    .site-footer {
+      border-top: 1px solid var(--rule);
+      margin-top: 3rem;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.4rem 2.5rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--amber-dim);
+    }
+
+    .footer-top a {
+      color: var(--amber-dim);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-top a:hover { color: var(--amber); }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.9rem 2.5rem 1.8rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-top: 1px solid var(--rule);
+    }
+
+    /* ── Lang content ── */
+    .lang-content { display: none; }
+    .lang-content.visible { display: block; }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { height: 50vw; }
+      .hero-left { padding: 7rem 1.5rem 3rem; }
+      .topnav { padding: 1rem 1.5rem; }
+      .article { padding: 2.5rem 1.5rem 2rem; }
+      .footer-top, .footer-bottom { padding-left: 1.5rem; padding-right: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="topnav">
+    <a href="../index.html" class="logo">S.N.E.</a>
+    <div class="nav-right">
+      <a href="../index.html" class="back" id="back-link">← Yazılar</a>
+      <div class="lang-toggle">
+        <button class="lang-btn active" onclick="setLang('tr', this)">TR</button>
+        <button class="lang-btn" onclick="setLang('en', this)">EN</button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-content">
+
+        <div class="lang-content visible" id="meta-tr">
+          <p class="meta">
+            <span>Oyun İncelemesi</span>
+            <span class="meta-sep">|</span>
+            <span>17 Mayıs 2026</span>
+          </p>
+          <h1>Heavy Rain Üzerine</h1>
+          <p class="subtitle">Bir suçlunun masum görünmesi için ne gerekir, bir masum suçlu görünmesi için ne yeter.</p>
+        </div>
+
+        <div class="lang-content" id="meta-en">
+          <p class="meta">
+            <span>Game Review</span>
+            <span class="meta-sep">|</span>
+            <span>May 17, 2026</span>
+          </p>
+          <h1>On Heavy Rain</h1>
+          <p class="subtitle">What does it take for a guilty man to seem innocent, what does it take for an innocent man to seem guilty.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <!-- FOTOĞRAF BURAYA: src'yi kendi dosya adınla değiştir -->
+      <img src="heavy-rain-bg.jpg" alt="Heavy Rain" onerror="this.parentElement.classList.add('no-image'); this.style.display='none'" />
+    </div>
+  </div>
+
+  <div class="article">
+    <hr />
+
+    <!-- TÜRKÇE -->
+    <div class="lang-content visible" id="content-tr">
+      <p>Heavy Rain'de yağmur hiç durmuyor. Sadece hava durumu değil — şehrin dokusuna, karakterlerin umutsuzluğuna, çözülemeyen şeylerin ağırlığına sinmiş bir şey bu. Her kritik sahnede orada, arka planda akan ve durdurulamayan bir varlık gibi. Oyunun adını koyanlar ne yapmak istediklerini biliyorlardı.</p>
+
+      <p>Bir hikâyenin nereye gideceğini tahmin edememek, o hikâyenin güçlü olduğunun göstergesidir. Heavy Rain bunu başarıyor — ama sadece bununla kalmıyor. Bana film izlettirmiyor, yaşatıyor. Beyond: Two Souls'ta ikisi dengeliydi; film hissi ile içinde olma hissi yaklaşık eşit ağırlıktaydı. Burada terazi açıkça bir yana yatıyor ve bu fark küçümsenecek bir şey değil.</p>
+
+      <p>Ethan'ın hikâyesinde oyun bize kopuşun sebebini değil sonucunu gösteriyor. Jason ölüyor, evliliği bitiyor, Shaun uzaklaşıyor. Bu kırılma noktalarının her biri dramatik ağırlık taşıyor — ama hiçbirini gerçekten yaşamıyoruz. Rüyalar suçluluk duygusunun dışavurumu olduğu kadar oyuncuya şüphe vermek için de var. Kurgu bunu fazla açık bırakıyor, zaman zaman dışarıya çıkıyorsunuz.</p>
+
+      <p>Madison'a ilk oynadığımda hikâyeye nasıl oturacağını anlayamamıştım. Origami Katili davasını çözmek amacıyla Ethan'a yaklaşıyor — ama oyun ilerledikçe bu başlangıç noktası önemini yitiriyor. Madison sonunda gerçekten orada, Shaun'u bulmak için Ethan'ın yanında. Ben gerçeği öğrendiğimde onu affettim, çünkü o ana kadar yaptıkları bunu hak ettiriyordu. Hikâye bu geçişi sessizce ama ikna edici biçimde kuruyor.</p>
+
+      <p>Norman Jayden'ın ARI sistemi oyunun en ilginç fikirlerinden biri — sanal gerçeklikle örülmüş bir dedektif aracı, hem teknolojik hem kırılgan. Norman'ın bağımlılığını ilk sahnede anlayamamıştım; ilaç değil astım ilacı zannettim. Sonradan her şey oturdu. Blake ile olan ilişkisi farklı bir gerilim taşıyor: biri değişmeye kapalı, sisteme kök salmış; diğeri o sistemin içinde boğuluyor. Norman'ın çaresizliği bu çatışmadan besleniyor, ama oyun bunu yeterince derinleştiremiyor.</p>
+
+      <p>Seçim mekanizması konusunda oyun alışılmışın dışında bir şey yapıyor: istatistik göstermiyor. Diğer Quantic Dream oyunlarında sahne sonlarında yüzde kaç oyuncunun hangi seçeneği seçtiğini görürsünüz — acaba farklı bir yol izleseydim nasıl olurdu sorusu oyun sırasında geliyor. Burada bu soru oyun bittikten sonra geliyor. Toplamda 17 farklı son var; ben sadece birini yaşadım ve o sonu gerçek hissettim. Seçenek metinleri zaman zaman yanıltıcı olsa da bu ağırlık hissi kaybolmuyor.</p>
+
+      <p>Ve Scott Shelby. Bileklerini kesen, küçük bebeği evde ağlarken bulduğu bir kadını kurtaran adam — ama aynı zamanda o kadının oğlunu ve kocasını öldüren de o. Lauren'ın yanında olan, onu koruyan, ona yakınlaşan kişi ile onu en derinden yıkan kişi aynı. Neden böyle biri olduğunu oyun tek bir şeyle açıklıyor: kardeşi boğulurken onu kurtarmaya gelmeyen bir baba. Bu tek cümle arkasındaki her şeyi taşıyor. Korkunç ama tutarlı. Oyun boyunca onu oynamaktan zevk aldım — şimdi o sahnelere baktığımda başka bir şey görüyorum, ama ilk oynanışın verdiği şeyi geri alamıyorum.</p>
+
+      <p>Ethan'ın sonunda mutlu sona ulaşması beni gerçekten tatmin etti. Scott'ın sonu ise farklı — ölümü geldi, ama ben hâlâ orada bir şeyler arıyordum. Travmasının ağırlığını taşıyan birine daha ağır bir hesaplaşma bekliyordum belki. Oyun bunu vermedi. Vermemesi gerekiyordu mu, hâlâ bilmiyorum.</p>
+    </div>
+
+    <!-- İNGİLİZCE -->
+    <div class="lang-content" id="content-en">
+      <p>Heavy Rain never stops raining. Not just weather — it seeps into the texture of the city, the despair of its characters, the weight of things that cannot be resolved. A presence, always running in the background, unstoppable. The people who named this game knew what they were doing.</p>
+
+      <p>If you can't predict where a story is going, that's a sign the story is strong. Heavy Rain achieves this — but it doesn't stop there. It doesn't let you watch. It makes you live it. In Beyond: Two Souls, the two were balanced; watching a film and being inside one carried roughly equal weight. Here, the scale tips clearly to one side, and that difference is not a small thing.</p>
+
+      <p>In Ethan's story, the game shows us not the cause of a collapse but its aftermath. Jason dies, the marriage falls apart, Shaun drifts away. Each of these breaking points carries dramatic weight — but we don't live through any of them. The dreams serve as expressions of guilt, but also as a way of casting suspicion on Ethan while the real killer stands beside us. The narrative leaves this too visible; it pulls you out at times.</p>
+
+      <p>Madison was a character I couldn't place at first — I didn't understand where she fit until her first scene with Ethan. She approaches him with the Origami Killer case in mind, but that starting point fades as the game goes on. By the end, she's simply there, beside him, helping find Shaun. When I learned the truth about her motives, I forgave her — because everything she'd done by that point had earned it. The game builds this transition quietly, and convincingly.</p>
+
+      <p>Norman Jayden's ARI system is one of the game's most interesting ideas — a detective tool woven through augmented reality, simultaneously technological and fragile. I didn't understand his addiction in the first scene; I thought it was an inhaler, not a drug. Everything fell into place later. His dynamic with Blake carries a different kind of tension: one man rooted in a system, closed to change; the other drowning inside it. Norman's helplessness feeds on this conflict, though the game doesn't give it enough room to breathe.</p>
+
+      <p>On the subject of choice, the game does something unusual: it shows no statistics. In other Quantic Dream games, you see at the end of each scene what percentage of players chose what — the question of what might have been different stays with you during the game. Here, that question comes after. There are seventeen different endings; I experienced only one, and it felt real. The choice text is occasionally misleading, but the weight of the decisions never left me.</p>
+
+      <p>And then there is Scott Shelby. A man who found a woman cutting her wrists while her baby cried alone in the house, and saved her — but who had also killed that woman's son and husband. The person beside Lauren, protecting her, growing close to her, is the same person who destroyed her most completely. The game explains why with a single detail: a father who didn't come to save his drowning brother. One sentence carrying everything behind it. Horrifying, but coherent. I enjoyed playing as Scott throughout the game — looking back at those scenes now, I see something else, but I can't get back what the first playthrough gave me.</p>
+
+      <p>Ethan reaching a happy ending genuinely satisfied me. Scott's ending was different — his death came, but I was still looking for something in that moment. Maybe I expected a heavier reckoning for someone carrying that much. The game didn't give it. Whether it should have, I still don't know.</p>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-top">
+      <span>Semi Nur Erdoğan</span>
+      <a href="../index.html" id="footer-back">← Tüm Yazılar</a>
+    </div>
+    <div class="footer-bottom">
+      <span id="footer-copy">© 2026 Semi Nur Erdoğan</span>
+      <span>İstanbul, Türkiye</span>
+    </div>
+  </footer>
+
+  <script>
+    function setLang(lang, btn) {
+      document.querySelectorAll('.lang-content').forEach(el => el.classList.remove('visible'));
+      document.querySelectorAll('.lang-btn').forEach(el => el.classList.remove('active'));
+      document.getElementById('content-' + lang).classList.add('visible');
+      document.getElementById('meta-' + lang).classList.add('visible');
+      btn.classList.add('active');
+
+      const tr = lang === 'tr';
+      document.getElementById('back-link').textContent = tr ? '← Yazılar' : '← Writings';
+      document.getElementById('footer-back').textContent = tr ? '← Tüm Yazılar' : '← All Writings';
+      document.getElementById('footer-copy').textContent = tr ? '© 2026 Semi Nur Erdoğan' : '© 2026 Semi Nur Erdogan';
+    }
+  </script>
+
+</body>
+</html>
