@@ -27,6 +27,18 @@
       min-height: 100vh;
     }
 
+    /* Full page background image */
+    .page-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background-image: url('heavy-rain-bg.png');
+      background-size: cover;
+      background-position: center right;
+      opacity: 0.18;
+      pointer-events: none;
+    }
+
     /* ── Top nav ── */
     .topnav {
       position: fixed;
@@ -36,7 +48,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 1.1rem 2.5rem;
-      background: rgba(247, 242, 234, 0.92);
+      background: rgba(247, 242, 234, 0.88);
       backdrop-filter: blur(8px);
       border-bottom: 1px solid var(--rule);
     }
@@ -91,40 +103,12 @@
     /* ── Hero ── */
     .hero {
       position: relative;
+      z-index: 1;
       min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-    }
-
-    .hero-left {
       display: flex;
-      align-items: flex-end;
-      padding: 8rem 3rem 5rem 3rem;
-    }
-
-    .hero-right {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-right img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-      display: block;
-    }
-
-    .hero-right::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to right, var(--bg) 0%, transparent 30%),
-                  linear-gradient(to top, var(--bg) 0%, transparent 20%);
-    }
-
-    .hero-right.no-image {
-      background: linear-gradient(135deg, #e8dfc8 0%, #d4c9b0 100%);
+      align-items: center;
+      padding: 8rem 3rem 5rem;
+      max-width: 760px;
     }
 
     .hero-content { width: 100%; }
@@ -158,13 +142,16 @@
       font-size: 1.05rem;
       color: var(--muted);
       line-height: 1.5;
+      max-width: 520px;
     }
 
     /* ── Article ── */
     .article {
+      position: relative;
+      z-index: 1;
       max-width: 680px;
       margin: 0 auto;
-      padding: 4rem 2rem 3rem;
+      padding: 0 2rem 3rem;
     }
 
     hr { border: none; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
@@ -174,8 +161,12 @@
 
     /* ── Footer ── */
     .site-footer {
+      position: relative;
+      z-index: 1;
       border-top: 1px solid var(--rule);
       margin-top: 3rem;
+      background: rgba(247, 242, 234, 0.85);
+      backdrop-filter: blur(4px);
     }
 
     .footer-top {
@@ -214,18 +205,17 @@
     .lang-content { display: none; }
     .lang-content.visible { display: block; }
 
-    /* ── Responsive ── */
     @media (max-width: 768px) {
-      .hero { grid-template-columns: 1fr; }
-      .hero-right { height: 50vw; }
-      .hero-left { padding: 7rem 1.5rem 3rem; }
+      .hero { padding: 7rem 1.5rem 3rem; }
       .topnav { padding: 1rem 1.5rem; }
-      .article { padding: 2.5rem 1.5rem 2rem; }
+      .article { padding: 0 1.5rem 2rem; }
       .footer-top, .footer-bottom { padding-left: 1.5rem; padding-right: 1.5rem; }
     }
   </style>
 </head>
 <body>
+
+  <div class="page-bg"></div>
 
   <nav class="topnav">
     <a href="../index.html" class="logo">S.N.E.</a>
@@ -239,42 +229,34 @@
   </nav>
 
   <div class="hero">
-    <div class="hero-left">
-      <div class="hero-content">
+    <div class="hero-content">
 
-        <div class="lang-content visible" id="meta-tr">
-          <p class="meta">
-            <span>Oyun İncelemesi</span>
-            <span class="meta-sep">|</span>
-            <span>17 Mayıs 2026</span>
-          </p>
-          <h1>Heavy Rain Üzerine</h1>
-          <p class="subtitle">Bir suçlunun masum görünmesi için ne gerekir, bir masum suçlu görünmesi için ne yeter.</p>
-        </div>
-
-        <div class="lang-content" id="meta-en">
-          <p class="meta">
-            <span>Game Review</span>
-            <span class="meta-sep">|</span>
-            <span>May 17, 2026</span>
-          </p>
-          <h1>On Heavy Rain</h1>
-          <p class="subtitle">What does it take for a guilty man to seem innocent, what does it take for an innocent man to seem guilty.</p>
-        </div>
-
+      <div class="lang-content visible" id="meta-tr">
+        <p class="meta">
+          <span>Oyun İncelemesi</span>
+          <span class="meta-sep">|</span>
+          <span>17 Mayıs 2026</span>
+        </p>
+        <h1>Heavy Rain Üzerine</h1>
+        <p class="subtitle">Bir suçlunun masum görünmesi için ne gerekir, bir masum suçlu görünmesi için ne yeter.</p>
       </div>
-    </div>
 
-    <div class="hero-right">
-      <!-- FOTOĞRAF BURAYA: src'yi kendi dosya adınla değiştir -->
-      <img src="heavy-rain-bg.png" alt="Heavy Rain" onerror="this.parentElement.classList.add('no-image'); this.style.display='none'" />
+      <div class="lang-content" id="meta-en">
+        <p class="meta">
+          <span>Game Review</span>
+          <span class="meta-sep">|</span>
+          <span>May 17, 2026</span>
+        </p>
+        <h1>On Heavy Rain</h1>
+        <p class="subtitle">What does it take for a guilty man to seem innocent, what does it take for an innocent man to seem guilty.</p>
+      </div>
+
     </div>
   </div>
 
   <div class="article">
     <hr />
 
-    <!-- TÜRKÇE -->
     <div class="lang-content visible" id="content-tr">
       <p>Heavy Rain'de yağmur hiç durmuyor. Sadece hava durumu değil — şehrin dokusuna, karakterlerin umutsuzluğuna, çözülemeyen şeylerin ağırlığına sinmiş bir şey bu. Her kritik sahnede orada, arka planda akan ve durdurulamayan bir varlık gibi. Oyunun adını koyanlar ne yapmak istediklerini biliyorlardı.</p>
 
@@ -293,7 +275,6 @@
       <p>Ethan'ın sonunda mutlu sona ulaşması beni gerçekten tatmin etti. Scott'ın sonu ise farklı — ölümü geldi, ama ben hâlâ orada bir şeyler arıyordum. Travmasının ağırlığını taşıyan birine daha ağır bir hesaplaşma bekliyordum belki. Oyun bunu vermedi. Vermemesi gerekiyordu mu, hâlâ bilmiyorum.</p>
     </div>
 
-    <!-- İNGİLİZCE -->
     <div class="lang-content" id="content-en">
       <p>Heavy Rain never stops raining. Not just weather — it seeps into the texture of the city, the despair of its characters, the weight of things that cannot be resolved. A presence, always running in the background, unstoppable. The people who named this game knew what they were doing.</p>
 
@@ -331,7 +312,6 @@
       document.getElementById('content-' + lang).classList.add('visible');
       document.getElementById('meta-' + lang).classList.add('visible');
       btn.classList.add('active');
-
       const tr = lang === 'tr';
       document.getElementById('back-link').textContent = tr ? '← Yazılar' : '← Writings';
       document.getElementById('footer-back').textContent = tr ? '← Tüm Yazılar' : '← All Writings';
