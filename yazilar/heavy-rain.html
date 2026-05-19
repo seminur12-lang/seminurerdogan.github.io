@@ -24,22 +24,9 @@
       font-family: 'Crimson Pro', Georgia, serif;
       font-size: 1.175rem;
       line-height: 1.82;
-      min-height: auto;
+      min-height: 100vh;
     }
 
-    /* Full page background image */
-    .page-bg {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      background-image: url('heavy-rain-bg.png');
-      background-size: cover;
-      background-position: center right;
-      opacity: 0.18;
-      pointer-events: none;
-    }
-
-    /* ── Top nav ── */
     .topnav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -48,7 +35,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 1.1rem 2.5rem;
-      background: rgba(247, 242, 234, 0.88);
+      background: rgba(247, 242, 234, 0.92);
       backdrop-filter: blur(8px);
       border-bottom: 1px solid var(--rule);
     }
@@ -100,15 +87,41 @@
     .lang-btn.active { background: var(--amber); color: #fff; }
     .lang-btn:not(.active):hover { color: var(--text); }
 
-    /* ── Hero ── */
+    /* Hero - same as Beyond */
     .hero {
       position: relative;
-      z-index: 1;
-      min-height: auto;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .hero-left {
       display: flex;
       align-items: center;
-      padding: 5rem 3rem 3rem;
-      max-width: 760px;
+      padding: 8rem 3rem 5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-right img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    .hero-right::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, var(--bg) 0%, transparent 25%),
+                  linear-gradient(to top, var(--bg) 0%, transparent 15%);
     }
 
     .hero-content { width: 100%; }
@@ -142,31 +155,21 @@
       font-size: 1.05rem;
       color: var(--muted);
       line-height: 1.5;
-      max-width: 520px;
     }
 
-    /* ── Article ── */
     .article {
-      position: relative;
-      z-index: 1;
       max-width: 680px;
       margin: 0 auto;
-      padding: 0 2rem 3rem;
+      padding: 4rem 2rem 3rem;
     }
 
     hr { border: none; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
-
     p { margin-bottom: 1.6rem; }
     p:last-child { margin-bottom: 0; }
 
-    /* ── Footer ── */
     .site-footer {
-      position: relative;
-      z-index: 1;
       border-top: 1px solid var(--rule);
       margin-top: 3rem;
-      background: rgba(247, 242, 234, 0.85);
-      backdrop-filter: blur(4px);
     }
 
     .footer-top {
@@ -201,21 +204,20 @@
       border-top: 1px solid var(--rule);
     }
 
-    /* ── Lang content ── */
     .lang-content { display: none; }
     .lang-content.visible { display: block; }
 
     @media (max-width: 768px) {
-      .hero { padding: 7rem 1.5rem 3rem; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { height: 55vw; }
+      .hero-left { padding: 7rem 1.5rem 2rem; }
       .topnav { padding: 1rem 1.5rem; }
-      .article { padding: 0 1.5rem 2rem; }
+      .article { padding: 2rem 1.5rem 2rem; }
       .footer-top, .footer-bottom { padding-left: 1.5rem; padding-right: 1.5rem; }
     }
   </style>
 </head>
 <body>
-
-  <div class="page-bg"></div>
 
   <nav class="topnav">
     <a href="../index.html" class="logo">S.N.E.</a>
@@ -229,28 +231,34 @@
   </nav>
 
   <div class="hero">
-    <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-content">
 
-      <div class="lang-content visible" id="meta-tr">
-        <p class="meta">
-          <span>Oyun İncelemesi</span>
-          <span class="meta-sep">|</span>
-          <span>17 Mayıs 2026</span>
-        </p>
-        <h1>Heavy Rain Üzerine</h1>
-        <p class="subtitle">Bir suçlunun masum görünmesi için ne gerekir, bir masum suçlu görünmesi için ne yeter.</p>
+        <div class="lang-content visible" id="meta-tr">
+          <p class="meta">
+            <span>Oyun İncelemesi</span>
+            <span class="meta-sep">|</span>
+            <span>17 Mayıs 2026</span>
+          </p>
+          <h1>Heavy Rain Üzerine</h1>
+          <p class="subtitle">Bir suçlunun masum görünmesi için ne gerekir, bir masum suçlu görünmesi için ne yeter.</p>
+        </div>
+
+        <div class="lang-content" id="meta-en">
+          <p class="meta">
+            <span>Game Review</span>
+            <span class="meta-sep">|</span>
+            <span>May 17, 2026</span>
+          </p>
+          <h1>On Heavy Rain</h1>
+          <p class="subtitle">What does it take for a guilty man to seem innocent, what does it take for an innocent man to seem guilty.</p>
+        </div>
+
       </div>
+    </div>
 
-      <div class="lang-content" id="meta-en">
-        <p class="meta">
-          <span>Game Review</span>
-          <span class="meta-sep">|</span>
-          <span>May 17, 2026</span>
-        </p>
-        <h1>On Heavy Rain</h1>
-        <p class="subtitle">What does it take for a guilty man to seem innocent, what does it take for an innocent man to seem guilty.</p>
-      </div>
-
+    <div class="hero-right">
+      <img src="heavy-rain-bg.png" alt="Heavy Rain" onerror="this.parentElement.style.background='linear-gradient(135deg,#e8dfc8,#d4c9b0)';this.style.display='none'" />
     </div>
   </div>
 
